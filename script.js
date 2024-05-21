@@ -43,7 +43,7 @@ function checkInputHartHit(input) {
 function checkInputSoftHit(input) {
     let softHit = 0
 
-    let codeLight = new Array(...secretCode)
+    let codeLight = secretCode
 
     input.forEach((value, index) => {
         if (codeLight.includes(value)) {
