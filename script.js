@@ -3,14 +3,14 @@ const colorLists = document.querySelectorAll('.color-list');
 const colorOptions = document.querySelectorAll('.color-option');
 
 let secretCode = []
-let rowNumber = 1
+let numberRow = 1
 
 function getSecretCode() {
     event.preventDefault();
     secretCode = document.getElementById("code").value.split(", ")
     console.log(secretCode)
     document.getElementById("code").value = "";
-    setTry()
+    tries()
 }
 
 colorDisplays.forEach((display, index) => {
@@ -29,7 +29,7 @@ colorOptions.forEach(option => {
     });
 });
 
-document.querySelector('#submit-guess').addEventListener('click', makeGuess);
+document.querySelector('#submit-guess').addEventListener('click', guess);
 
 function checkInputHartHit(input) {
     let hartHit = 0
@@ -44,11 +44,11 @@ function checkInputHartHit(input) {
 function checkInputSoftHit(input) {
     let softHit = 0
 
-    let codeLight = new Array(...secretCode)
+    let code_light = new Array(...secretCode)
 
     input.forEach((value, index) => {
-        if (codeLight.includes(value)) {
-            codeLight[codeLight.indexOf(value)] = "";
+        if (code_light.includes(value)) {
+            code_light[code_light.indexOf(value)] = "";
             softHit++;
         }
     });
@@ -70,7 +70,7 @@ function createAnswer(input, softHit, hardtHit) {
 
     let divIndex = document.createElement('div');
     divIndex.classList.add("index-number");
-    divIndex.textContent = rowNumber++;
+    divIndex.textContent = numberRow++;
 
     divGuesses.appendChild(divIndex);
 
@@ -84,30 +84,30 @@ function createAnswer(input, softHit, hardtHit) {
     let divGuessResultL = document.createElement('div');
     divGuessResultL.classList.add("guess-result");
 
-    let divGuessResultR = divGuessResultL.cloneNode(true);
+    let div_guess_result_r = divGuessResultL.cloneNode(true);
     let results = new Array(4).fill("white");
     results.fill("lavender", 0, softHit);
     results.fill("black", 0, hardtHit);
 
     results.forEach((color, index) => {
-        let divGuessResultI = document.createElement('div');
-        divGuessResultI.classList.add("guess-result-item");
-        divGuessResultI.setAttribute("data-color", color);
-        (index < results.length / 2 ? divGuessResultL : divGuessResultR)
-            .appendChild(divGuessResultI);
+        let div_guess_result_item = document.createElement('div');
+        div_guess_result_item.classList.add("guess-result-item");
+        div_guess_result_item.setAttribute("data-color", color);
+        (index < results.length / 2 ? divGuessResultL : div_guess_result_r)
+            .appendChild(div_guess_result_item);
     });
 
-    divGuesses.append(divGuessResultL, divGuessResultR);
+    divGuesses.append(divGuessResultL, div_guess_result_r);
     guesses.appendChild(divGuesses);
 }
 
-function setTry() {
-    let triesLeft = (11 - rowNumber)
-    const divRes = document.getElementById("tries_left")
-    divRes.textContent = (triesLeft + "  more guesses 👮")
+function tries() {
+    let tries_left = (11 - numberRow)
+    const div_result = document.getElementById("tries_left")
+    div_result.textContent = (tries_left + "  more guesses 👮")
 }
 
-function makeGuess() {
+function guess() {
     let input = []
     try {
         colorDisplays.forEach((color, index) => {
@@ -121,8 +121,8 @@ function makeGuess() {
     const hardtHit = checkInputHartHit(input)
 
     createAnswer(input, softHit, hardtHit)
-    setTry()
-    if (hardtHit === 4 || rowNumber >= 11) {
+    tries()
+    if (hardtHit === 4 || numberRow >= 11) {
         gameOver(hardtHit)
     }
 }
