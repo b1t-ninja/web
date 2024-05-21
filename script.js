@@ -31,6 +31,16 @@ colorOptions.forEach(option => {
 
 document.querySelector('#submit-guess').addEventListener('click', guess);
 
+function checkInputHartHit(input) {
+    let hartHit = 0
+    secretCode.forEach((code, i) => {
+        if (code === input[i]) {
+            hartHit++;
+        }
+    });
+    return hartHit
+}
+
 function checkInputSoftHit(input) {
     let softHit = 0
 
@@ -43,16 +53,6 @@ function checkInputSoftHit(input) {
         }
     });
     return softHit
-}
-
-function checkInputHartHit(input) {
-    let hartHit = 0
-    secretCode.forEach((code, i) => {
-        if (code === input[i]) {
-            hartHit++;
-        }
-    });
-    return hartHit
 }
 
 function gameOver(hardhit) {
