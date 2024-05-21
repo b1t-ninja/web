@@ -35,6 +35,7 @@ function checkInputHartHit(input) {
     let hartHit = 0
     secretCode.forEach((code, i) => {
         if (code === input[i]) {
+            console.log(code, input[i])
             hartHit++;
         }
     });
