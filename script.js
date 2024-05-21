@@ -48,11 +48,11 @@ function checkInputSoftHit(input) {
 
 function checkInputHartHit(input) {
     let hartHit = 0
-    for (let i = 0; i < secretCode.length; i++) {
-        if (secretCode[i] === input[i]) {
-            hartHit++
+    secretCode.forEach((code, i) => {
+        if (code === input[i]) {
+            hartHit++;
         }
-    }
+    });
     return hartHit
 }
 
