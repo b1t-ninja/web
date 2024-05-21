@@ -3,7 +3,7 @@ const colorLists = document.querySelectorAll('.color-list');
 const colorOptions = document.querySelectorAll('.color-option');
 
 let secretCode = []
-let numberRow = 1
+let rowNumber = 1
 
 function getSecretCode() {
     event.preventDefault();
@@ -56,7 +56,7 @@ function checkInputSoftHit(input) {
 }
 
 function gameOver(hit) {
-    const dialog = document.getElementById("gameend");
+    let dialog = document.getElementById("gameend");
     dialog.textContent = (hit === 4)
         ? `You won ! 🐦‍🔥`
         : "You lost 🚫 try again ! 🔁";
@@ -70,7 +70,7 @@ function createAnswer(input, softHit, hardtHit) {
 
     let divIndex = document.createElement('div');
     divIndex.classList.add("index-number");
-    divIndex.textContent = numberRow++;
+    divIndex.textContent = rowNumber++;
 
     divGuesses.appendChild(divIndex);
 
@@ -102,7 +102,7 @@ function createAnswer(input, softHit, hardtHit) {
 }
 
 function setTry() {
-    let triesLeft = (11 - numberRow)
+    let triesLeft = (11 - rowNumber)
     const divRes = document.getElementById("tries_left")
     divRes.textContent = (triesLeft + "  more guesses 👮")
 }
@@ -122,7 +122,7 @@ function makeGuess() {
 
     createAnswer(input, softHit, hardtHit)
     setTry()
-    if (hardtHit === 4 || numberRow >= 11) {
+    if (hardtHit === 4 || rowNumber >= 11) {
         gameOver(hardtHit)
     }
 }
