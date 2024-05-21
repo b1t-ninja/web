@@ -1,9 +1,8 @@
+let secretCode = []
+let rowNumber = 1
 const colorDisplays = document.querySelectorAll('.color-display');
 const colorLists = document.querySelectorAll('.color-list');
 const colorOptions = document.querySelectorAll('.color-option');
-
-let secretCode = []
-let rowNumber = 1
 
 function getSecretCode() {
     event.preventDefault();
