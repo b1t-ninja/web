@@ -44,11 +44,11 @@ function checkInputHartHit(input) {
 function checkInputSoftHit(input) {
     let softHit = 0
 
-    let code_light = new Array(...secretCode)
+    let codeLight = new Array(...secretCode)
 
     input.forEach((value, index) => {
-        if (code_light.includes(value)) {
-            code_light[code_light.indexOf(value)] = "";
+        if (codeLight.includes(value)) {
+            codeLight[codeLight.indexOf(value)] = "";
             softHit++;
         }
     });
@@ -65,46 +65,46 @@ function gameOver(hit) {
 
 function createAnswer(input, softHit, hardtHit) {
     let guesses = document.getElementById("guesses");
-    let div_guesses = document.createElement('div');
-    div_guesses.classList.add("guess-row");
+    let divGuesses = document.createElement('div');
+    divGuesses.classList.add("guess-row");
 
-    const div_index = document.createElement('div');
-    div_index.classList.add("index-number");
-    div_index.textContent = numberRow++;
+    let divIndex = document.createElement('div');
+    divIndex.classList.add("index-number");
+    divIndex.textContent = numberRow++;
 
-    div_guesses.appendChild(div_index);
+    divGuesses.appendChild(divIndex);
 
     input.forEach(color => {
-        const div_guess_item = document.createElement('div');
-        div_guess_item.classList.add('guess-item');
-        div_guess_item.setAttribute('data-color', color);
-        div_guesses.appendChild(div_guess_item);
+        let divGuessItem = document.createElement('div');
+        divGuessItem.classList.add('guess-item');
+        divGuessItem.setAttribute('data-color', color);
+        divGuesses.appendChild(divGuessItem);
     });
 
-    let div_guess_result_left = document.createElement('div');
-    div_guess_result_left.classList.add("guess-result");
+    let divGuessResultL = document.createElement('div');
+    divGuessResultL.classList.add("guess-result");
 
-    let div_guess_result_right = div_guess_result_left.cloneNode(true);
+    let divGuessResultR = divGuessResultL.cloneNode(true);
     let results = new Array(4).fill("white");
     results.fill("lavender", 0, softHit);
     results.fill("black", 0, hardtHit);
 
     results.forEach((color, index) => {
-        let div_guess_result_item = document.createElement('div');
-        div_guess_result_item.classList.add("guess-result-item");
-        div_guess_result_item.setAttribute("data-color", color);
-        (index < results.length / 2 ? div_guess_result_left : div_guess_result_right)
-            .appendChild(div_guess_result_item);
+        let divGuessResultI = document.createElement('div');
+        divGuessResultI.classList.add("guess-result-item");
+        divGuessResultI.setAttribute("data-color", color);
+        (index < results.length / 2 ? divGuessResultL : divGuessResultR)
+            .appendChild(divGuessResultI);
     });
 
-    div_guesses.append(div_guess_result_left, div_guess_result_right);
-    guesses.appendChild(div_guesses);
+    divGuesses.append(divGuessResultL, divGuessResultR);
+    guesses.appendChild(divGuesses);
 }
 
 function tries() {
-    let tries_left = (11 - numberRow)
-    const div_result = document.getElementById("tries_left")
-    div_result.textContent = (tries_left + "  more guesses 👮")
+    let triesLeft = (11 - numberRow)
+    const divRes = document.getElementById("tries_left")
+    divRes.textContent = (triesLeft + "  more guesses 👮")
 }
 
 function guess() {
