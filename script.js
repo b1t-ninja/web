@@ -1,5 +1,5 @@
 let secretCode = []
-let rowNum = 1
+let rowNumber = 1
 const colorDisplays = document.querySelectorAll('.color-display');
 const colorLists = document.querySelectorAll('.color-list');
 const colorOptions = document.querySelectorAll('.color-option');
@@ -42,7 +42,9 @@ function checkInputHartHit(input) {
 
 function checkInputSoftHit(input) {
     let softHit = 0
-    let codeLight = secretCode
+
+    let codeLight = new Array(...secretCode)
+
     input.forEach((value, index) => {
         if (codeLight.includes(value)) {
             codeLight[codeLight.indexOf(value)] = "";
@@ -53,7 +55,7 @@ function checkInputSoftHit(input) {
 }
 
 function gameOver(hit) {
-    let dialog = document.getElementById("game-over");
+    let dialog = document.getElementById("gameend");
     dialog.textContent = (hit === 4)
         ? `You won ! 🐦‍🔥`
         : "You lost 🚫 try again ! 🔁";
@@ -66,7 +68,7 @@ function createAnswer(input, softHit, hardtHit) {
     divGuesses.classList.add("guess-row");
     let divIndex = document.createElement('div');
     divIndex.classList.add("index-number");
-    divIndex.textContent = rowNum++;
+    divIndex.textContent = rowNumber++;
     divGuesses.appendChild(divIndex);
     input.forEach(color => {
         let divGuessItem = document.createElement('div');
@@ -92,8 +94,8 @@ function createAnswer(input, softHit, hardtHit) {
 }
 
 function setTry() {
-    let triesLeft = (11 - rowNum)
-    const divRes = document.getElementById("tries-left")
+    let triesLeft = (11 - rowNumber)
+    const divRes = document.getElementById("tries_left")
     divRes.textContent = (`${triesLeft} more guesses 👮`)
 }
 
@@ -106,9 +108,10 @@ function makeGuess() {
     } catch (e) {}
     const softHit = checkInputSoftHit(input)
     const hardtHit = checkInputHartHit(input)
+
     createAnswer(input, softHit, hardtHit)
     setTry()
-    if (hardtHit === 4 || rowNum >= 11) {
+    if (hardtHit === 4 || rowNumber >= 11) {
         gameOver(hardtHit)
     }
 }
