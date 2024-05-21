@@ -65,50 +65,45 @@ function gameOver(hardhit) {
 }
 
 function createAnswer(input, softHit, hardtHit) {
-    const guesses = document.getElementById("guesses")
-    const div_guess_row = document.createElement('div')
-    div_guess_row.classList.add("guess-row")
+    const guesses = document.getElementById("guesses");
+    const div_guess_row = document.createElement('div');
+    div_guess_row.classList.add("guess-row");
 
-    const div_index_number = document.createElement('div')
-    div_index_number.classList.add("index-number")
-    div_index_number.textContent = numberRow++
+    const div_index_number = document.createElement('div');
+    div_index_number.classList.add("index-number");
+    div_index_number.textContent = numberRow++;
 
-    div_guess_row.appendChild(div_index_number)
+    div_guess_row.appendChild(div_index_number);
 
-    for (let i = 0; i < input.length; i++) {
-        const div_guess_item = document.createElement('div')
-        div_guess_item.classList.add('guess-item')
-        div_guess_item.setAttribute('data-color', input[i])
-        div_guess_row.appendChild(div_guess_item)
-    }
+    input.forEach(color => {
+        const div_guess_item = document.createElement('div');
+        div_guess_item.classList.add('guess-item');
+        div_guess_item.setAttribute('data-color', color);
+        div_guess_row.appendChild(div_guess_item);
+    });
 
-    const div_guess_result_left = document.createElement('div')
-    div_guess_result_left.classList.add("guess-result")
+    const div_guess_result_left = document.createElement('div');
+    div_guess_result_left.classList.add("guess-result");
 
-    const div_guess_result_right = div_guess_result_left.cloneNode(true)
+    const div_guess_result_right = div_guess_result_left.cloneNode(true);
+    const results = new Array(4).fill("white");
+    results.fill("lavender", 0, softHit);
+    results.fill("black", 0, hardtHit);
 
-    const results = ["white", "white", "white", "white"]
-    for (let i = 0; i < softHit; i++) {
-        results[i] = "lavender"
-    }
-    for (let i = 0; i < hardtHit; i++) {
-        results[i] = "black"
-    }
+    results.forEach((color, index) => {
+        const div_guess_result_item = document.createElement('div');
+        div_guess_result_item.classList.add("guess-result-item");
+        div_guess_result_item.setAttribute("data-color", color);
 
-    for (let i = 0; i < results.length; i++) {
-        const div_guess_result_item = document.createElement('div')
-        div_guess_result_item.classList.add("guess-result-item")
-        div_guess_result_item.setAttribute("data-color", results[i])
-
-        if (i + 1 <= results.length / 2) {
-            div_guess_result_left.appendChild(div_guess_result_item)
+        if (index < results.length / 2) {
+            div_guess_result_left.appendChild(div_guess_result_item);
         } else {
-            div_guess_result_right.appendChild(div_guess_result_item)
+            div_guess_result_right.appendChild(div_guess_result_item);
         }
-    }
-    div_guess_row.appendChild(div_guess_result_left)
-    div_guess_row.appendChild(div_guess_result_right)
-    guesses.appendChild(div_guess_row)
+    });
+
+    div_guess_row.append(div_guess_result_left, div_guess_result_right);
+    guesses.appendChild(div_guess_row);
 }
 
 function tries() {
