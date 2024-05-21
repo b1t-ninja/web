@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supercode</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="game-board">
+        <form action="" onsubmit="getSecretCode()" method="post">
+            <label for="code">Choose four secret colors</label><br>
+            <ul>
+                <li>red</li>
+                <li>blue</li>
+                <li>green</li>
+                <li>yellow</li>
+                <li>brown</li>
+            </ul>
+            <p>example: red, green, blue, red</p>
+            <input type="text" id="code" name="code"><br>
+        </form>
+        <h1>Supercode</h1>
+        <div id="guesses">
+        </div>
+        <hr>
+        <div id="code-input">
+            <div class="color-options">
+                <div class="color-select">
+                    <div class="color-display"></div>
+                    <div class="color-list">
+                        <div class="color-option"></div>
+                        <div class="color-option" data-color="red"></div>
+                        <div class="color-option" data-color="blue"></div>
+                        <div class="color-option" data-color="green"></div>
+                        <div class="color-option" data-color="yellow"></div>
+                        <div class="color-option" data-color="brown"></div>
+                    </div>
+                </div>
+                <div class="color-select">
+                    <div class="color-display"></div>
+                    <div class="color-list">
+                        <div class="color-option"></div>
+                        <div class="color-option" data-color="red"></div>
+                        <div class="color-option" data-color="blue"></div>
+                        <div class="color-option" data-color="green"></div>
+                        <div class="color-option" data-color="yellow"></div>
+                        <div class="color-option" data-color="brown"></div>
+                    </div>
+                </div>
+                <div class="color-select">
+                    <div class="color-display"></div>
+                    <div class="color-list">
+                        <div class="color-option"></div>
+                        <div class="color-option" data-color="red"></div>
+                        <div class="color-option" data-color="blue"></div>
+                        <div class="color-option" data-color="green"></div>
+                        <div class="color-option" data-color="yellow"></div>
+                        <div class="color-option" data-color="brown"></div>
+                    </div>
+                </div>
+                <div class="color-select">
+                    <div class="color-display"></div>
+                    <div class="color-list">
+                        <div class="color-option"></div>
+                        <div class="color-option" data-color="red"></div>
+                        <div class="color-option" data-color="blue"></div>
+                        <div class="color-option" data-color="green"></div>
+                        <div class="color-option" data-color="yellow"></div>
+                        <div class="color-option" data-color="brown"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="submit-guess">Check 🔎</button>
+            <button id="reload" onclick="window.location.reload()">Redo 🔁</button>
+            <div>
+                <p id="tries_left"></p>
+            </div>
+        </div>
+    </div>
+    <div id="result"></div>
+    <dialog>
+        <h2 id="gameend"></h2>
+        <button onclick="window.location.reload()">Restart</button>        
+    </dialog>
+    <script src="script.js"></script>
+</body>
+</html>
