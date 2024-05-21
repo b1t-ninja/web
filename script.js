@@ -53,7 +53,7 @@ function checkInputSoftHit(input) {
 }
 
 function gameOver(hit) {
-    let dialog = document.getElementById("gameend");
+    let dialog = document.getElementById("game-over");
     dialog.textContent = (hit === 4)
         ? `You won ! 🐦‍🔥`
         : "You lost 🚫 try again ! 🔁";
@@ -93,7 +93,7 @@ function createAnswer(input, softHit, hardtHit) {
 
 function setTry() {
     let triesLeft = (11 - rowNum)
-    const divRes = document.getElementById("tries_left")
+    const divRes = document.getElementById("tries-left")
     divRes.textContent = (`${triesLeft} more guesses 👮`)
 }
 
