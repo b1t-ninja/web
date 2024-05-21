@@ -56,7 +56,7 @@ function checkInputSoftHit(input) {
 }
 
 function gameOver(hit) {
-    let dialog = document.getElementById("gameend");
+    const dialog = document.getElementById("gameend");
     dialog.textContent = (hit === 4)
         ? `You won ! 🐦‍🔥`
         : "You lost 🚫 try again ! 🔁";
@@ -111,6 +111,9 @@ function makeGuess() {
     let input = []
     try {
         colorDisplays.forEach((color, index) => {
+            if (color.style.backgroundColor === "") {
+                throw new Error("please choose a color.")
+            }
             input[index] = color.style.backgroundColor
         })
     } catch (e) {}
