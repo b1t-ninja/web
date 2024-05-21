@@ -66,28 +66,22 @@ function createAnswer(input, softHit, hardtHit) {
     let guesses = document.getElementById("guesses");
     let divGuesses = document.createElement('div');
     divGuesses.classList.add("guess-row");
-
     let divIndex = document.createElement('div');
     divIndex.classList.add("index-number");
     divIndex.textContent = rowNumber++;
-
     divGuesses.appendChild(divIndex);
-
     input.forEach(color => {
         let divGuessItem = document.createElement('div');
         divGuessItem.classList.add('guess-item');
         divGuessItem.setAttribute('data-color', color);
         divGuesses.appendChild(divGuessItem);
     });
-
     let divGuessResultL = document.createElement('div');
     divGuessResultL.classList.add("guess-result");
-
     let divGuessResultR = divGuessResultL.cloneNode(true);
     let results = new Array(4).fill("white");
     results.fill("lavender", 0, softHit);
     results.fill("black", 0, hardtHit);
-
     results.forEach((color, index) => {
         let divGuessResultI = document.createElement('div');
         divGuessResultI.classList.add("guess-result-item");
@@ -95,7 +89,6 @@ function createAnswer(input, softHit, hardtHit) {
         (index < results.length / 2 ? divGuessResultL : divGuessResultR)
             .appendChild(divGuessResultI);
     });
-
     divGuesses.append(divGuessResultL, divGuessResultR);
     guesses.appendChild(divGuesses);
 }
@@ -103,7 +96,7 @@ function createAnswer(input, softHit, hardtHit) {
 function setTry() {
     let triesLeft = (11 - rowNumber)
     const divRes = document.getElementById("tries_left")
-    divRes.textContent = (triesLeft + "  more guesses 👮")
+    divRes.textContent = (`${triesLeft} more guesses 👮`)
 }
 
 function makeGuess() {
