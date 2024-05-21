@@ -32,22 +32,21 @@ colorOptions.forEach(option => {
 
 document.querySelector('#submit-guess').addEventListener('click', submitGuess);
 
-function checkInputLighthit(input) {
+function checkInputSoftHit(input) {
     let softHit = 0
 
     let code_light = new Array(...secretCode)
 
-    for (let i = 0; i < input.length; i++) {
-        if (code_light.includes(input[i])) {
-            let index = code_light.indexOf(input[i])
-            code_light[index] = ""
-            softHit++
+    input.forEach((value, index) => {
+        if (code_light.includes(value)) {
+            code_light[code_light.indexOf(value)] = "";
+            softHit++;
         }
-    }
+    });
     return softHit
 }
 
-function checkInputHardhit(input) {
+function checkInputHartHit(input) {
     let hartHit = 0
     for (let i = 0; i < secretCode.length; i++) {
         if (secretCode[i] === input[i]) {
@@ -136,8 +135,8 @@ function submitGuess() {
         // alert(e.message)
     }
 
-    const lighthit = checkInputLighthit(input)
-    const hardhit = checkInputHardhit(input)
+    const lighthit = checkInputSoftHit(input)
+    const hardhit = checkInputHartHit(input)
 
     generateAnswer(input, lighthit, hardhit)
 
