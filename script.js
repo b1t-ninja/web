@@ -30,7 +30,7 @@ colorOptions.forEach(option => {
     });
 });
 
-document.querySelector('#submit-guess').addEventListener('click', submitGuess);
+document.querySelector('#submit-guess').addEventListener('click', guess);
 
 function checkInputSoftHit(input) {
     let softHit = 0
@@ -64,7 +64,7 @@ function gameOver(hardhit) {
     dialog.parentElement.showModal();
 }
 
-function generateAnswer(input, lighthit, hardhit) {
+function createAnswer(input, lighthit, hardhit) {
     const guesses = document.getElementById("guesses")
     const div_guess_row = document.createElement('div')
     div_guess_row.classList.add("guess-row")
@@ -117,7 +117,7 @@ function tries() {
     div_result.textContent = (tries_left + "  more guesses 👮")
 }
 
-function submitGuess() {
+function guess() {
     let input = []
     try {
         colorDisplays.forEach((color, index) => {
@@ -127,16 +127,13 @@ function submitGuess() {
             input[index] = color.style.backgroundColor
         })
     } catch (e) {
-        // alert(e.message)
     }
+    const softHit = checkInputSoftHit(input)
+    const hardtHit = checkInputHartHit(input)
 
-    const lighthit = checkInputSoftHit(input)
-    const hardhit = checkInputHartHit(input)
-
-    generateAnswer(input, lighthit, hardhit)
-
+    createAnswer(input, softHit, hardtHit)
     tries()
-    if (hardhit == 4 || numberRow >= 11) {
-        gameOver(hardhit)
+    if (hardtHit == 4 || numberRow >= 11) {
+        gameOver(hardtHit)
     }
 }
