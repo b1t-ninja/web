@@ -57,16 +57,11 @@ function checkInputHartHit(input) {
 }
 
 function gameOver(hardhit) {
-    const dialog = document.getElementById("gameend")
-    if (hardhit == 4) {
-        let tries_left = (11 - numberRow)
-        let dialogText = `You won ! 🐦‍🔥`
-        console.log(dialogText)
-        dialog.textContent = dialogText
-    } else {
-        dialog.textContent = "You lost 🚫 try again ! 🔁"
-    }
-    dialog.parentElement.showModal()
+    const dialog = document.getElementById("gameend");
+    dialog.textContent = (hardhit === 4)
+        ? `You won ! 🐦‍🔥`
+        : "You lost 🚫 try again ! 🔁";
+    dialog.parentElement.showModal();
 }
 
 function generateAnswer(input, lighthit, hardhit) {
