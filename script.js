@@ -2,7 +2,6 @@ const colorDisplays = document.querySelectorAll('.color-display');
 const colorLists = document.querySelectorAll('.color-list');
 const colorOptions = document.querySelectorAll('.color-option');
 
-// const colors = ["red", "blue", "green", "yellow", "brown"]
 let secretCode = []
 let numberRow = 1
 
