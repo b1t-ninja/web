@@ -55,9 +55,9 @@ function checkInputSoftHit(input) {
     return softHit
 }
 
-function gameOver(hardhit) {
+function gameOver(hit) {
     const dialog = document.getElementById("gameend");
-    dialog.textContent = (hardhit === 4)
+    dialog.textContent = (hit === 4)
         ? `You won ! 🐦‍🔥`
         : "You lost 🚫 try again ! 🔁";
     dialog.parentElement.showModal();
