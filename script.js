@@ -111,9 +111,6 @@ function makeGuess() {
     let input = []
     try {
         colorDisplays.forEach((color, index) => {
-            if (color.style.backgroundColor === "") {
-                throw new Error("please choose a color.")
-            }
             input[index] = color.style.backgroundColor
         })
     } catch (e) {}
