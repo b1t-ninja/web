@@ -64,7 +64,7 @@ function gameOver(hardhit) {
     dialog.parentElement.showModal();
 }
 
-function createAnswer(input, lighthit, hardhit) {
+function createAnswer(input, softHit, hardtHit) {
     const guesses = document.getElementById("guesses")
     const div_guess_row = document.createElement('div')
     div_guess_row.classList.add("guess-row")
@@ -88,10 +88,10 @@ function createAnswer(input, lighthit, hardhit) {
     const div_guess_result_right = div_guess_result_left.cloneNode(true)
 
     const results = ["white", "white", "white", "white"]
-    for (let i = 0; i < lighthit; i++) {
+    for (let i = 0; i < softHit; i++) {
         results[i] = "lavender"
     }
-    for (let i = 0; i < hardhit; i++) {
+    for (let i = 0; i < hardtHit; i++) {
         results[i] = "black"
     }
 
@@ -126,14 +126,13 @@ function guess() {
             }
             input[index] = color.style.backgroundColor
         })
-    } catch (e) {
-    }
+    } catch (e) {}
     const softHit = checkInputSoftHit(input)
     const hardtHit = checkInputHartHit(input)
 
     createAnswer(input, softHit, hardtHit)
     tries()
-    if (hardtHit == 4 || numberRow >= 11) {
+    if (hardtHit === 4 || numberRow >= 11) {
         gameOver(hardtHit)
     }
 }
