@@ -10,7 +10,7 @@ function getSecretCode() {
     secretCode = document.getElementById("code").value.split(", ")
     console.log(secretCode)
     document.getElementById("code").value = "";
-    tries()
+    setTry()
 }
 
 colorDisplays.forEach((display, index) => {
@@ -29,7 +29,7 @@ colorOptions.forEach(option => {
     });
 });
 
-document.querySelector('#submit-guess').addEventListener('click', guess);
+document.querySelector('#submit-guess').addEventListener('click', makeGuess);
 
 function checkInputHartHit(input) {
     let hartHit = 0
@@ -101,13 +101,13 @@ function createAnswer(input, softHit, hardtHit) {
     guesses.appendChild(divGuesses);
 }
 
-function tries() {
+function setTry() {
     let triesLeft = (11 - numberRow)
     const divRes = document.getElementById("tries_left")
     divRes.textContent = (triesLeft + "  more guesses 👮")
 }
 
-function guess() {
+function makeGuess() {
     let input = []
     try {
         colorDisplays.forEach((color, index) => {
@@ -121,7 +121,7 @@ function guess() {
     const hardtHit = checkInputHartHit(input)
 
     createAnswer(input, softHit, hardtHit)
-    tries()
+    setTry()
     if (hardtHit === 4 || numberRow >= 11) {
         gameOver(hardtHit)
     }
